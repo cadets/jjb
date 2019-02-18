@@ -24,13 +24,15 @@
           branches:
             - '*/{branch}'
           basedir: freebsd
+      - git:
+          url: https://github.com/cadets/cadets-ci
+          basedir: cadets-ci
     triggers:
       - reverse:
           jobs: '../../llvm-prov'
           result: 'unstable'
       - github
     builders:
-      - checkout-scripts
       - copyartifact:
           project: '../../LLVM-cadets'
           which-build: last-successful
@@ -67,9 +69,12 @@
     properties:
       - wall-display:
           text: BBN VM ({branch})
+    scm:
+      - git:
+          url: https://github.com/cadets/cadets-ci
+          basedir: cadets-ci
     node: vm_host
     builders:
-      - checkout-scripts
       - copyartifact:
           project: 'build'
           which-build: upstream-build
@@ -89,8 +94,11 @@
       - wall-display:
           text: FreeBSD ({branch}) VM
     node: vm_host
+    scm:
+      - git:
+          url: https://github.com/cadets/cadets-ci
+          basedir: cadets-ci
     builders:
-      - checkout-scripts
       - copyartifact:
           project: 'build'
           which-build: upstream-build
@@ -110,8 +118,11 @@
       - wall-display:
           text: FreeBSD ({branch}) test VM
     node: vm_host
+    scm:
+      - git:
+          url: https://github.com/cadets/cadets-ci
+          basedir: cadets-ci
     builders:
-      - checkout-scripts
       - copyartifact:
           project: 'build'
           which-build: upstream-build
@@ -134,8 +145,11 @@
       - wall-display:
           text: FreeBSD ({branch}) test
     node: vm_host
+    scm:
+      - git:
+          url: https://github.com/cadets/cadets-ci
+          basedir: cadets-ci
     builders:
-      - checkout-scripts
       - copyartifact:
           project: 'test-vm'
           which-build: upstream-build
