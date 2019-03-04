@@ -11,6 +11,7 @@
     name: 'CADETS/bsd/{branch}/build'
     description: FreeBSD trunk from the CADETS project ('{branch}' branch)
     defaults: global
+    node: master
     properties:
       - github:
           url: https://github.com/cadets/freebsd/
