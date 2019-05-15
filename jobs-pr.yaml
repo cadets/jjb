@@ -34,6 +34,22 @@
             - cadets
           github-hooks: true
     builders:
+      - copyartifact:
+          project: '../../LLVM-cadets'
+          which-build: last-successful
+          fallback-to-last-successful: true
+          filter: 'llvm.txz'
+      - copyartifact:
+          project: '../../Loom'
+          which-build: last-successful
+          fallback-to-last-successful: true
+          filter: 'loom.txz'
+      - copyartifact:
+          project: '../../llvm-prov'
+          which-build: last-successful
+          fallback-to-last-successful: true
+          filter: 'llvm-prov.txz'
+      - shell: tar -zxvf BUILD_TYPE=Release/llvm.txz && tar -zxvf BUILD_TYPE=Release/loom.txz && tar -zxvf BUILD_TYPE=Release/llvm-prov.txz 
       - shell: sh -ex cadets-ci/scripts/cadets-build.sh
     publishers:
       - scan-clang-warnings
